@@ -19,7 +19,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -121,7 +121,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEngine()
     {
-        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
+        $engine = $this->getMockBuilder('\JonnyW\PhantomJs\Engine')->getMock();
 
         return $engine;
     }

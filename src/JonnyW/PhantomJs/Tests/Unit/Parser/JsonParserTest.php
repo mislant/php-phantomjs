@@ -6,6 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\PhantomJs\Tests\Unit\Parser;
 
 use JonnyW\PhantomJs\Parser\JsonParser;
@@ -15,12 +16,12 @@ use JonnyW\PhantomJs\Parser\JsonParser;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class JsonParserTest extends \PHPUnit_Framework_TestCase
+class JsonParserTest extends \PHPUnit\Framework\TestCase
 {
 
-/*****************/
-/***** TESTS *****/
-/*****************/
+    /*****************/
+    /***** TESTS *****/
+    /*****************/
 
     /**
      * Test parse returns array if data
@@ -35,7 +36,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -51,7 +52,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -67,7 +68,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -83,7 +84,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -99,7 +100,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -115,7 +116,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $jsonParser = $this->getJsonParser();
 
-        $this->assertInternalType('array', $jsonParser->parse($data));
+        $this->assertIsArray($jsonParser->parse($data));
     }
 
     /**
@@ -170,7 +171,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseSuccessfullyParsesMultidimensionalDataIfDataIsValidJsonFormat()
     {
-         $data = '{
+        $data = '{
             "data": {
                 "data": { "data": "Test data" },
                 "more_data": "More test data"
@@ -182,7 +183,7 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
 
         $expectedData = array(
             'data' => array(
-                'data'      => array( 'data' => 'Test data' ),
+                'data' => array('data' => 'Test data'),
                 'more_data' => 'More test data'
             )
         );
@@ -190,9 +191,9 @@ class JsonParserTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($parsedData, $expectedData);
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ TEST ENTITIES ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++ TEST ENTITIES ++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Get JSON parser instance.

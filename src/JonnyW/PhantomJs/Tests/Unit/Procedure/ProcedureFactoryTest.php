@@ -8,6 +8,8 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 use Twig_Environment;
 use Twig_Loader_String;
 use JonnyW\PhantomJs\Engine;
@@ -24,7 +26,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureFactory;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
+class ProcedureFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -120,10 +122,9 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function getRenderer()
     {
-        $twig = new Twig_Environment(
-            new Twig_Loader_String()
+        $twig = new Environment(
+            new ArrayLoader()
         );
-
         $renderer = new TemplateRenderer($twig);
 
         return $renderer;

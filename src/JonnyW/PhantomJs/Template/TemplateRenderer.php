@@ -6,7 +6,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\PhantomJs\Template;
+
+use Twig\Environment;
 
 /**
  * PHP PhantomJs
@@ -18,7 +21,7 @@ class TemplateRenderer implements TemplateRendererInterface
     /**
      * Twig environment instance.
      *
-     * @var \Twig_Environment
+     * @var Environment
      * @access protected
      */
     protected $twig;
@@ -27,9 +30,9 @@ class TemplateRenderer implements TemplateRendererInterface
      * Internal constructor.
      *
      * @access public
-     * @param \Twig_Environment $twig
+     * @param Environment $twig
      */
-    public function __construct(\Twig_Environment $twig)
+    public function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }
@@ -38,13 +41,13 @@ class TemplateRenderer implements TemplateRendererInterface
      * Render template.
      *
      * @access public
-     * @param  string $template
-     * @param  array  $context  (default: array())
+     * @param string $template
+     * @param array $context (default: array())
      * @return string
      */
     public function render($template, array $context = array())
     {
-        $template = $this->twig->createTemplate($template);
+        $template = $this->twig->createTemplate($template ?? "");
 
         return $template->render($context);
     }

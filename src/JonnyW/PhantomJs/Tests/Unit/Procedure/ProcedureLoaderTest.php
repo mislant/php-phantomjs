@@ -8,6 +8,8 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 use Twig_Environment;
 use Twig_Loader_String;
 use Symfony\Component\Config\FileLocatorInterface;
@@ -27,7 +29,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureLoader;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
+class ProcedureLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test filename
@@ -58,7 +60,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfProcedureFileIsNotLocal()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
@@ -79,7 +81,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotExistsExceptionIsThrownIfProcedureFileDoesNotExist()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotExistsException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotExistsException');
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
@@ -247,8 +249,8 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getRenderer()
     {
-        $twig = new Twig_Environment(
-            new Twig_Loader_String()
+        $twig = new Environment(
+            new ArrayLoader()
         );
 
         $renderer = new TemplateRenderer($twig);
@@ -268,7 +270,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getFileLocator()
     {
-        $fileLocator = $this->getMock('\Symfony\Component\Config\FileLocatorInterface');
+        $fileLocator = $this->getMockBuilder('\Symfony\Component\Config\FileLocatorInterface')->getMock();
 
         return $fileLocator;
     }
@@ -283,7 +285,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      * @access public
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->filename  = 'test.proc';
         $this->directory = sys_get_temp_dir();
@@ -299,7 +301,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      * @access public
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $filename = $this->getFilename();
 

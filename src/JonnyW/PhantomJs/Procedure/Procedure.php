@@ -169,7 +169,7 @@ class Procedure implements ProcedureInterface
      *
      * @access public
      * @param  \JonnyW\PhantomJs\Procedure\InputInterface $input
-     * @return void
+     * @return string
      */
     public function compile(InputInterface $input)
     {

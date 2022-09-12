@@ -6,6 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\PhantomJs\Tests\Unit\Validator;
 
 use Symfony\Component\Config\FileLocator;
@@ -16,12 +17,12 @@ use JonnyW\PhantomJs\Validator\Esprima;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class EsprimaTest extends \PHPUnit_Framework_TestCase
+class EsprimaTest extends \PHPUnit\Framework\TestCase
 {
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++++++ TESTS ++++++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++++++ TESTS ++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Test invalid argument exception is thrown
@@ -32,10 +33,10 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfFilePathIsNotLocalFile()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $fileLocator = $this->getFileLocator();
-        $esprima     = $this->getEsprima($fileLocator, 'http://example.com');
+        $esprima = $this->getEsprima($fileLocator, 'http://example.com');
 
         $esprima->load();
     }
@@ -49,10 +50,10 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentIsThrownIfFileDoesNotExist()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $fileLocator = $this->getFileLocator();
-        $esprima     = $this->getEsprima($fileLocator, 'invalidFile.js');
+        $esprima = $this->getEsprima($fileLocator, 'invalidFile.js');
 
         $esprima->load();
     }
@@ -66,9 +67,9 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
     public function testEngineCanBeLoaded()
     {
         $fileLocator = $this->getFileLocator();
-        $esprima     = $this->getEsprima($fileLocator, 'esprima-2.0.0.js');
+        $esprima = $this->getEsprima($fileLocator, 'esprima-2.0.0.js');
 
-        $this->assertContains('esprima', $esprima->load());
+        $this->assertStringContainsString('esprima', $esprima->load());
     }
 
     /**
@@ -79,15 +80,15 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
      */
     public function testEngineCanBeCovertedToString()
     {
-       $fileLocator = $this->getFileLocator();
-        $esprima     = $this->getEsprima($fileLocator, 'esprima-2.0.0.js');
+        $fileLocator = $this->getFileLocator();
+        $esprima = $this->getEsprima($fileLocator, 'esprima-2.0.0.js');
 
-        $this->assertContains('esprima', (string) $esprima);
+        $this->assertStringContainsString('esprima', (string)$esprima);
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ TEST ENTITIES ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++ TEST ENTITIES ++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Get esprima.

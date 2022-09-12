@@ -109,7 +109,7 @@ EOF;
      */
     public function testSyntaxExceptionIsThrownIfRequestProcedureContainsSyntaxError()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $content = 'TEST_PROCEDURE';
 
@@ -238,10 +238,10 @@ EOF;
     public function testCanLoadCookiesFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file='.$file);
+        $client->getEngine()->addOption('--cookies-file=' . $file);
 
         $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
@@ -264,10 +264,10 @@ EOF;
     public function testCanDeleteCookieFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file='.$file);
+        $client->getEngine()->addOption('--cookies-file=' . $file);
 
         $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
@@ -297,10 +297,10 @@ EOF;
     public function testCanDeleteAllCookiesFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file='.$file);
+        $client->getEngine()->addOption('--cookies-file=' . $file);
 
         $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
@@ -467,7 +467,7 @@ EOF;
     public function testCaptureRequestSavesFileToLocalDisk()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -490,7 +490,7 @@ EOF;
     public function testCaptureRequestSavesFileToDiskWithCorrectCaptureDimensions()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $width = 200;
         $height = 400;
@@ -520,7 +520,7 @@ EOF;
     public function testPdfRequestSavesPdfToLocalDisk()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -543,7 +543,7 @@ EOF;
     public function testPdfRequestSavesFileToDiskWithCorrectPaperSize()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $width = 20;
         $height = 30;
@@ -577,7 +577,7 @@ EOF;
     public function testPdfRequestSavesFileToDiskWithCorrectFormatSize()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -608,7 +608,7 @@ EOF;
     public function testPdfRequestSavesFileToDiskWithCorrectOrientation()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -640,7 +640,7 @@ EOF;
     public function testCanSetRepeatingHeaderForPDFRequest()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -673,7 +673,7 @@ EOF;
     public function testCanSetRepeatingFooterForPDFRequest()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -989,7 +989,7 @@ EOF;
     public function testCanSetPageBackgroundColor()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory.'/'.$this->filename);
+        $file = ($this->directory . '/' . $this->filename);
 
         $client = $this->getClient();
 
@@ -1036,7 +1036,7 @@ EOF;
     /**
      * Set up test environment.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->filename = 'test.proc';
         $this->directory = sys_get_temp_dir();
@@ -1049,7 +1049,7 @@ EOF;
     /**
      * Tear down test environment.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $filename = $this->getFilename();
 
@@ -1087,7 +1087,7 @@ EOF;
     /**
      * Get log entry index.
      *
-     * @param array  $logs
+     * @param array $logs
      * @param string $search
      *
      * @return int|false

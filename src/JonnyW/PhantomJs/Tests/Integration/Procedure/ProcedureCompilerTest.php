@@ -6,23 +6,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\PhantomJs\Tests\Integration\Procedure;
 
 use JonnyW\PhantomJs\Http\Request;
 use JonnyW\PhantomJs\Procedure\ProcedureCompiler;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
+use JonnyW\PhantomJs\Test\TestCase;
 
 /**
  * PHP PhantomJs
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
+class ProcedureCompilerTest extends TestCase
 {
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++++++ TESTS ++++++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++++++ TESTS ++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Test can compile procedure
@@ -60,7 +62,7 @@ class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
         $request = $this->getRequest();
         $request->setUrl('http://test.com');
 
-        $renderer = $this->getMock('\JonnyW\PhantomJs\Template\TemplateRendererInterface');
+        $renderer = $this->getMockBuilder('\JonnyW\PhantomJs\Template\TemplateRendererInterface')->getMock();
         $renderer->expects($this->exactly(1))
             ->method('render')
             ->will($this->returnValue('var test=1; phantom.exit(1);'));
@@ -94,7 +96,7 @@ class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
         $request = $this->getRequest();
         $request->setUrl('http://test.com');
 
-        $renderer = $this->getMock('\JonnyW\PhantomJs\Template\TemplateRendererInterface');
+        $renderer = $this->getMockBuilder('\JonnyW\PhantomJs\Template\TemplateRendererInterface')->getMock();
         $renderer->expects($this->exactly(2))
             ->method('render')
             ->will($this->returnValue('var test=1; phantom.exit(1);'));
@@ -127,7 +129,7 @@ class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
         $request = $this->getRequest();
         $request->setUrl('http://test.com');
 
-        $renderer = $this->getMock('\JonnyW\PhantomJs\Template\TemplateRendererInterface');
+        $renderer = $this->getMockBuilder('\JonnyW\PhantomJs\Template\TemplateRendererInterface')->getMock();
         $renderer->expects($this->exactly(2))
             ->method('render')
             ->will($this->returnValue('var test=1; phantom.exit(1);'));
@@ -155,7 +157,7 @@ class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSyntaxExceptionIsThrownIfCompiledTemplateIsNotValid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $template = <<<EOF
     console.log(;
@@ -171,9 +173,9 @@ EOF;
 
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ TEST ENTITIES ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++ TEST ENTITIES ++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Get procedure compiler.
@@ -199,7 +201,7 @@ EOF;
      * getProcedure function.
      *
      * @access protected
-     * @param  string                                         $id
+     * @param string $id
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
      */
     protected function getProcedure($id)
@@ -220,9 +222,9 @@ EOF;
         return $request;
     }
 
-/** +++++++++++++++++++++++++++++++ **/
-/** ++++++++++ UTILITIES ++++++++++ **/
-/** +++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++ **/
+    /** ++++++++++ UTILITIES ++++++++++ **/
+    /** +++++++++++++++++++++++++++++++ **/
 
     /**
      * Set up tasks.
@@ -230,7 +232,7 @@ EOF;
      * @access protected
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -243,7 +245,7 @@ EOF;
      * @access protected
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::setUp();
 
